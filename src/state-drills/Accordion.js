@@ -13,30 +13,23 @@ export default class Accordion extends React.Component {
         this.setState ({ currentSectionIndex: Index})
     }
 
-    renderContent(section, currentSectionIndex) {
-        console.log(this.section.content)
+    renderContent(section, index, currentSectionIndex) {
         return (
-            <li>
-                <button onClick={() => this.changeSectionIndex()}></button>
-                <title>{section.title}</title>
-                <p>{this.section.content}</p>
+            <li key={index}>
+                <button type='button' onClick={() => this.changeSectionIndex(index)}>{section.title}</button>
+                {(currentSectionIndex === index) && <p>{section.content}</p>}
             </li>
         )
     }
 
     render() {
-
+        const {currentSectionIndex} = this.state
+        const {sections} = this.props
+        return (
+            <ul>
+                {sections.map((section, index) =>
+                    this.renderItem(section, index, currentSectionIndex))}
+            </ul>
+        )
     }
 }
-
-
-handleButtonClick(index) {
-    console.log('button clicked!', { index })
-  }
-renderButtons() {
-    return this.props.tabs.map((sections, index) => (
-      <button key={index} onClick={() => this.handleButtonClick(index)}>
-        {tab.name}
-      </button>
-    ))
-  }
