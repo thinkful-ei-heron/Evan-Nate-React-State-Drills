@@ -1,7 +1,8 @@
 import React from 'react';
-import Accordion from './state-drills/Accordion';
+import Accordion from './state-drills/Accordion/Accordion';
+import Tabs from './state-drills/Tabs'
 
-const sections = [
+const tabsProp = [
   {
     title: 'Section 1',
     content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
@@ -16,14 +17,22 @@ const sections = [
   },
 ]
 
-function App() {
-  return (
-    <main className='App'>
-      {/* sections content goes here */}
-    </main>
-  );
+
+
+class App extends React.Component { 
+  render(){ 
+    return <div> 
+      {/* <Tabs tabs={tabsProp} />  */}
+      <Accordion sections={tabsProp} />
+    </div>
+  }
 }
-
-
-
 export default App;
+
+// function App() {
+//   return (
+//     <main className='App'>
+//       {/* sections content goes here */}
+//     </main>
+//   );
+// }

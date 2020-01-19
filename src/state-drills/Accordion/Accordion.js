@@ -1,16 +1,21 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-export default class Accordion extends React.Component {
+export default class Accordion extends Component {
     static defaultProps = {
         sections: []
     }
 
     state = {
-       currentSectionIndex: 0 
+       currentSectionIndex: null 
     }
 
     changeSectionIndex = (Index) => {
+        if(Index === this.state.currentSectionIndex){
+            this.setState({currentSectionIndex: null}); 
+        }
+        else{
         this.setState ({ currentSectionIndex: Index})
+        }
     }
 
     renderContent(section, index, currentSectionIndex) {
@@ -28,7 +33,7 @@ export default class Accordion extends React.Component {
         return (
             <ul>
                 {sections.map((section, index) =>
-                    this.renderItem(section, index, currentSectionIndex))}
+                    this.renderContent(section, index, currentSectionIndex))}
             </ul>
         )
     }
